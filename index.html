@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Zorix RP | 500+ текстур-паков для Minecraft Bedrock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(ellipse at 20% 30%, #0a0c14, #020305);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            padding: 40px 24px;
+            position: relative;
+            cursor: default;
+        }
+
+        /* Анимированные кубики в фоне (усилено) */
+        .minecraft-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cube {
+            position: absolute;
+            background: rgba(224, 108, 117, 0.08);
+            border: 1px solid rgba(224, 108, 117, 0.2);
+            border-radius: 12px;
+            animation: floatCube 20s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes floatCube {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.4;
+            }
+            85% {
+                opacity: 0.25;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(30deg);
+                opacity: 0;
+            }
+        }
+
+        /* ГЛАВНАЯ КАРТОЧКА — БОЛЬШАЯ, на всю ширину до 900px */
+        .tgstat-card {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(6, 8, 15, 0.82);
+            backdrop-filter: blur(18px);
+            border-radius: 64px;
+            padding: 48px 48px 56px;
+            color: #f0f0f0;
+            box-shadow: 0 45px 65px -25px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(224, 108, 117, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.4s ease;
+            border: 1px solid rgba(224, 108, 117, 0.4);
+            position: relative;
+            z-index: 2;
+            animation: cardGlowPulse 5s infinite alternate;
+        }
+
+        @keyframes cardGlowPulse {
+            0% {
+                box-shadow: 0 45px 65px -25px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(224, 108, 117, 0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+                border-color: rgba(224, 108, 117, 0.35);
+            }
+            100% {
+                box-shadow: 0 55px 85px -30px rgba(224, 108, 117, 0.3), 0 0 0 2px rgba(224, 108, 117, 0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+                border-color: rgba(224, 108, 117, 0.7);
+            }
+        }
+
+        .tgstat-card:hover {
+            transform: translateY(-8px) scale(1.005);
+            box-shadow: 0 60px 90px -30px rgba(224, 108, 117, 0.4);
+        }
+
+        /* Анимация появления */
+        .channel-handle, .channel-title, .repeat-handle, .tagline, .hashtags, .admin-line, .geo-lang, .bottom-channel, .small-note, .related, .stats-block {
+            animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            opacity: 0;
+        }
+
+        .channel-handle { animation-delay: 0.05s; }
+        .channel-title { animation-delay: 0.1s; }
+        .repeat-handle { animation-delay: 0.15s; }
+        .divider { animation: fadeIn 0.6s ease forwards; animation-delay: 0.2s; opacity: 0; }
+        .tagline { animation-delay: 0.25s; }
+        .hashtags { animation-delay: 0.3s; }
+        .admin-line { animation-delay: 0.35s; }
+        .related { animation-delay: 0.4s; }
+        .stats-block { animation-delay: 0.45s; }
+        .geo-lang { animation-delay: 0.52s; }
+        .bottom-channel { animation-delay: 0.6s; }
+        .small-note { animation-delay: 0.68s; }
+
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(25px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .channel-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 46px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF 0%, #e6b8bd 85%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            display: inline-block;
+            text-shadow: 0 0 12px rgba(224,108,117,0.5);
+            transition: all 0.2s;
+        }
+
+        .channel-title {
+            font-size: 26px;
+            font-weight: 600;
+            color: #eeefff;
+            margin: 16px 0 14px;
+            border-left: 5px solid #e06c75;
+            padding-left: 20px;
+            background: linear-gradient(90deg, rgba(224,108,117,0.2), transparent);
+            border-radius: 0 16px 16px 0;
+        }
+
+        .repeat-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            color: #c6c7f0;
+            background: rgba(224,108,117,0.15);
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 24px;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, #e06c75, #8a8dc0, #2a2c42);
+            margin: 24px 0;
+            border-radius: 4px;
+        }
+
+        .tagline {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff, #e06c75, #ffb3bd);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 28px;
+            animation: glitchText 3s infinite alternate;
+        }
+
+        @keyframes glitchText {
+            0% { text-shadow: -1px -1px 0 #e06c75, 1px 1px 0 #6c5b7b; }
+            100% { text-shadow: -2px -2px 0 #ff8c9e, 2px 2px 0 #4a4e7c; }
+        }
+
+        /* ВСЕ 5 ХЭШТЕГОВ */
+        .hashtags {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .hashtags span {
+            background: rgba(224, 108, 117, 0.18);
+            padding: 8px 22px;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+            color: #ffd6da;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(224,108,117,0.35);
+            letter-spacing: 0.3px;
+        }
+
+        .hashtags span:hover {
+            background: rgba(224, 108, 117, 0.45);
+            transform: scale(1.05);
+            color: white;
+            border-color: #e06c75;
+            box-shadow: 0 0 18px rgba(224,108,117,0.5);
+        }
+
+        .admin-line {
+            font-size: 17px;
+            margin-bottom: 24px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 26px;
+            border-radius: 60px;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+        }
+
+        .admin-line a, .bottom-channel a {
+            color: #ffb7c1;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+            border-bottom: 1px dashed rgba(255,183,193,0.6);
+        }
+
+        .admin-line a:hover, .bottom-channel a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px #e06c75;
+            border-bottom-color: #e06c75;
+        }
+
+        .related {
+            font-size: 15px;
+            color: #aeb0dc;
+            margin-bottom: 20px;
+            background: rgba(224,108,117,0.1);
+            display: inline-block;
+            padding: 6px 22px;
+            border-radius: 60px;
+            letter-spacing: 0.4px;
+        }
+
+        /* СТАТИСТИКА 500+ */
+        .stats-block {
+            background: linear-gradient(105deg, rgba(224,108,117,0.15), rgba(40,40,75,0.4));
+            border-radius: 56px;
+            padding: 18px 28px;
+            margin: 20px 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid rgba(224,108,117,0.35);
+            backdrop-filter: blur(6px);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: #e06c75;
+            text-shadow: 0 0 10px #e06c75;
+            letter-spacing: 2px;
+        }
+
+        .stat-label {
+            font-size: 17px;
+            color: #e2e4ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stat-icon {
+            font-size: 38px;
+            color: #e06c75;
+            filter: drop-shadow(0 0 6px #e06c75);
+        }
+
+        /* ГЕО И ЯЗЫК — только русский */
+        .geo-lang {
+            font-size: 16px;
+            display: flex;
+            gap: 40px;
+            margin: 22px 0 28px;
+            background: rgba(10,12,26,0.7);
+            padding: 12px 28px;
+            border-radius: 80px;
+            width: fit-content;
+            backdrop-filter: blur(4px);
+            font-weight: 500;
+        }
+
+        .geo-lang span {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .bottom-channel {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(224,108,117,0.45);
+            font-size: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .bottom-channel a {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(120deg, #f5dce0, #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+        }
+
+        .small-note {
+            font-size: 13px;
+            color: #8a8bb5;
+            text-align: right;
+            margin-top: 32px;
+            letter-spacing: 1px;
+            opacity: 0.75;
+        }
+
+        .glow-icon {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 16px;
+            gap: 28px;
+        }
+
+        .glow-icon i {
+            font-size: 24px;
+            color: #e06c75;
+            text-shadow: 0 0 8px #e06c75;
+            animation: pulseIcon 2.5s infinite;
+        }
+
+        @keyframes pulseIcon {
+            0% { opacity: 0.5; text-shadow: 0 0 4px #e06c75; transform: scale(0.95);}
+            100% { opacity: 1; text-shadow: 0 0 16px #ff8c9e; transform: scale(1.1);}
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 20px 16px; }
+            .tgstat-card {
+                padding: 32px 24px 40px;
+            }
+            .channel-handle { font-size: 34px; }
+            .tagline { font-size: 24px; }
+            .stat-number { font-size: 32px; }
+            .stats-block { flex-direction: column; align-items: flex-start; }
+            .hashtags span { padding: 5px 16px; font-size: 13px; }
+            .geo-lang { flex-wrap: wrap; gap: 16px; }
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #1a1b2fe6;
+            backdrop-filter: blur(20px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            color: #e06c75;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 600;
+            z-index: 1000;
+            border: 1px solid #e06c75;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="minecraft-bg" id="minecraftBg"></div>
+    <div class="tgstat-card">
+        <div class="channel-handle" id="copyHandle">@Zorix_rp</div>
+        <div class="channel-title"><strong>Текстур паки Minecraft Bedrock (PE/Java)</strong> ⚡</div>
+        <div class="repeat-handle">@Zorix_rp</div>
+        <div class="divider"></div>
+        
+        <div class="tagline">✦ САМЫЕ РЕДКИЕ РП ДЛЯ МАЙНКРАФТА! ✦</div>
+        
+        <!-- ВСЕ 5 ХЭШТЕГОВ: как просили -->
+        <div class="hashtags">
+            <span>#РесурсПак</span>
+            <span>#Майнкрафт</span>
+            <span>#Minecraft</span>
+            <span>#pvp</span>
+            <span>#bedwars</span>
+        </div>
+
+        <div class="admin-line">
+            <i class="fas fa-crown" style="margin-right: 10px; font-size: 14px; color: #e0af6c;"></i> админ — <a href="https://t.me/sotka_10" target="_blank" rel="noopener noreferrer">@sotka_10</a>
+        </div>
+
+        <div class="related">
+            <i class="fas fa-link"></i> [Связанные каналы] • эксклюзивные коллекции текстур
+        </div>
+
+        <!-- БЛОК СТАТИСТИКИ 500+ текстур-паков -->
+        <div class="stats-block">
+            <div class="stat-item">
+                <i class="fas fa-cubes stat-icon"></i>
+                <div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">текстур-паков</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-skull-crossbones stat-icon"></i>
+                <div>
+                    <div class="stat-number">Ultra</div>
+                    <div class="stat-label">редкие RP</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-tachometer-alt stat-icon"></i>
+                <div>
+                    <div class="stat-number">PvP</div>
+                    <div class="stat-label">optimization</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ТОЛЬКО РУССКИЙ ЯЗЫК -->
+        <div class="geo-lang">
+            <span><i class="fas fa-globe-europe"></i> 🇷🇺 Россия</span>
+            <span><i class="fas fa-language"></i> Русский</span>
+            <span><i class="fas fa-gamepad"></i> PvP / BedWars сервер</span>
+            <span><i class="fas fa-diamond"></i> 500+ уникальных паков</span>
+        </div>
+
+        <div class="glow-icon">
+            <i class="fas fa-gem"></i> <i class="fas fa-palette"></i> <i class="fas fa-sword"></i> <i class="fas fa-dragon"></i>
+        </div>
+
+        <div class="bottom-channel">
+            <i class="fab fa-telegram"></i> наш второй канал: <a href="https://t.me/Zynox_rp" target="_blank" rel="noopener noreferrer">@Zynox_rp</a>
+            <span style="font-size: 16px; margin-left: 10px;">🔥</span>
+        </div>
+
+        <div class="small-note">
+            #РесурсПак #Майнкрафт #Minecraft #pvp #bedwars | Только лучшие сборки для PvP и BedWars
+        </div>
+    </div>
+    <div id="toastMessage" class="toast-msg">✦ Скопировано!</div>
+
+    <script>
+        // Генерация плавающих кубов
+        function createFloatingCubes() {
+            const container = document.getElementById('minecraftBg');
+            if (!container) return;
+            const cubeCount = 40;
+            for (let i = 0; i < cubeCount; i++) {
+                const cube = document.createElement('div');
+                cube.classList.add('cube');
+                const size = Math.floor(Math.random() * 60) + 20;
+                cube.style.width = size + 'px';
+                cube.style.height = size + 'px';
+                cube.style.left = Math.random() * 100 + '%';
+                cube.style.animationDuration = Math.random() * 16 + 10 + 's';
+                cube.style.animationDelay = Math.random() * 14 + 's';
+                cube.style.opacity = Math.random() * 0.5 + 0.1;
+                cube.style.borderRadius = '10px';
+                cube.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(cube);
+            }
+        }
+        createFloatingCubes();
+
+        // Копирование
+        const handleElement = document.getElementById('copyHandle');
+        const toast = document.getElementById('toastMessage');
+        function showToast(text) {
+            toast.textContent = text || '✦ Скопировано!';
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(-50%) scale(1)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(-50%) scale(0.9)';
+            }, 1800);
+        }
+        if (handleElement) {
+            handleElement.style.cursor = 'pointer';
+            handleElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText('@Zorix_rp').then(() => {
+                    showToast('✔ @Zorix_rp скопирован');
+                    handleElement.style.textShadow = '0 0 20px #ff99aa';
+                    setTimeout(() => { handleElement.style.textShadow = ''; }, 300);
+                }).catch(() => showToast('❌ Ошибка'));
+            });
+        }
+
+        // Блик на карточке
+        const card = document.querySelector('.tgstat-card');
+        if (card) {
+            const shimmer = document.createElement('div');
+            shimmer.style.position = 'absolute';
+            shimmer.style.top = '0';
+            shimmer.style.left = '-100%';
+            shimmer.style.width = '70%';
+            shimmer.style.height = '100%';
+            shimmer.style.background = 'linear-gradient(90deg, transparent, rgba(224,108,117,0.12), transparent)';
+            shimmer.style.transform = 'skewX(-18deg)';
+            shimmer.style.pointerEvents = 'none';
+            shimmer.style.zIndex = '3';
+            shimmer.style.borderRadius = '64px';
+            card.style.position = 'relative';
+            card.style.overflow = 'hidden';
+            card.appendChild(shimmer);
+            let hoverTimer;
+            card.addEventListener('mouseenter', () => {
+                shimmer.style.transition = 'left 1s cubic-bezier(0.2, 0.9, 0.6, 1.1)';
+                shimmer.style.left = '120%';
+                hoverTimer = setTimeout(() => {
+                    shimmer.style.transition = 'none';
+                    shimmer.style.left = '-100%';
+                    setTimeout(() => shimmer.style.transition = 'left 1s cubic-bezier(0.2, 0.9, 0.6, 1.1)', 50);
+                }, 1000);
+            });
+            card.addEventListener('mouseleave', () => {
+                if (hoverTimer) clearTimeout(hoverTimer);
+                shimmer.style.transition = 'left 0.4s ease-out';
+                shimmer.style.left = '-100%';
+            });
+        }
+
+        // Звёздный фон
+        const starStyle = document.createElement('style');
+        starStyle.textContent = `@keyframes twinkle { 0% { opacity: 0.05; transform: scale(0.8); } 100% { opacity: 0.7; transform: scale(1.3); } }`;
+        document.head.appendChild(starStyle);
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.style.position = 'fixed';
+            star.style.width = '2px';
+            star.style.height = '2px';
+            star.style.background = 'white';
+            star.style.borderRadius = '50%';
+            star.style.opacity = Math.random() * 0.6 + 0.1;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.zIndex = '1';
+            star.style.pointerEvents = 'none';
+            star.style.animation = `twinkle ${Math.random() * 5 + 2}s infinite alternate`;
+            document.body.appendChild(star);
+        }
+
+        // Частицы при клике
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('a') || e.target === handleElement) return;
+            const particle = document.createElement('div');
+            particle.innerHTML = '⚡';
+            particle.style.position = 'fixed';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            particle.style.fontSize = '24px';
+            particle.style.color = '#e06c75';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.filter = 'drop-shadow(0 0 6px #e06c75)';
+            particle.style.animation = 'floatParticle 0.9s ease-out forwards';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 900);
+        });
+        const particleAnim = document.createElement('style');
+        particleAnim.textContent = `@keyframes floatParticle { 0% { transform: translateY(0) scale(0.6); opacity: 1; } 100% { transform: translateY(-70px) scale(1.4); opacity: 0; } }`;
+        document.head.appendChild(particleAnim);
+    </script>
+</body>
+</html>
